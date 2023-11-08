@@ -48,6 +48,7 @@ def root2():  #Ventana para metodo 50/30/20
     Label(frame2, text="Meta de ahorro:", font=("Lato", 15), bg="#F0F0F0").grid(row=7, column=1, padx=20, pady=5, sticky='n')
     Button(frame2, text="Calcular", font=("Lato", 15), bg="#D4AF37", width=10, height=1, bd=2, command=calculos1).grid(row=8, column=1, padx=20, pady=5, sticky='ne')
     Button(frame2, text="Volver", font=("Lato", 10), bg="#D4AF37", width=10, height=1, bd=2, command=volver).grid(row=8, column=2, padx=20, pady=5, sticky='w')
+    
     if root2:
         root.withdraw() #La ventana se oculta infinitamente
     root2.mainloop()
@@ -83,9 +84,43 @@ def root3():  #Ventana para metodo Harv Eker
     Label(frame3, text="Meta de ahorro:", font=("Lato", 15), bg="#F0F0F0").grid(row=10, column=1, padx=20, pady=5, sticky='n')
     Button(frame3, text="Calcular", font=("Lato", 15), bg="#D4AF37", width=10, height=1, bd=2, command=calculos2).grid(row=11, column=1, padx=20, pady=5, sticky='ne')
     Button(frame3, text="Volver", font=("Lato", 10), bg="#D4AF37", width=10, height=1, bd=2, command=volver).grid(row=11, column=2, padx=20, pady=5, sticky='w')
+    
     if root3:
         root.withdraw() #La ventana se oculta infinitamente
     root3.mainloop()
+
+def root4():  #Ventana para metodo personalizado
+    global root4, root_active, ingresos3, meta3
+    root3 =Toplevel(root) #Crear una segunda ventana luego de la principal
+    root2.title("Metodo Personalizado")
+    root2.resizable(0,0)
+    root2.geometry("650x650")
+    root2.iconbitmap("logo.ico")
+    root2.config(bg="#F0F0F0")
+    root_active=root4
+    frame4=Frame(root3, width=650, height=300, bg="#F0F0F0")
+    frame4.grid(row=0, column=0, sticky="n", padx=20, pady=5)
+    Label(frame4, text="Metodo Personalizado", font=("Lato", 40), bg="#F0F0F0").grid(row=1, column=1, pady=10, columnspan=2)
+    Label(frame4, text="Este modelo es un espacio para que el usuario pueda otorgarle porcentajes a variables que el usuario considere necesarias, si no se considera necesaria alguna variable, se debe poner porcentaje cero en esta. ", font=("Lato", 10), bg="#F0F0F0", wraplength=600, justify='left').grid(row=2, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame4, text="-a % destinado a necesidades básicas: inmuebles, alimentación básica, transporte, etc.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=3, column=1, pady=2, columnspan=2, sticky='w')
+    Label(frame4, text="-b % para formación: libros, material de oficina/estudio, cursos, trabajos, exposiciones, etc.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=4, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame4, text="-c % para inversiones a largo plazo: gastos más grandes que hará en el futuro.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame4, text="-d % para invertir en ocio o algún capricho.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=6, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame4, text="-e % para donativos o caridades.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=7, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame4, text="-f % para ahorro: este dinero no se puede tocar para nada.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=8, column=1, pady=2, sticky='w', columnspan=2)
+    
+    ingresos3=Entry(frame4)
+    ingresos3.grid(row=9, column=2, padx=10, pady=10, sticky='n')
+    Label(frame4, text="Ingresos mensuales:", font=("Lato", 15), bg="#F0F0F0").grid(row=9, column=1, padx=20, pady=10, sticky='n')
+    meta3=Entry(frame4)
+    meta3.grid(row=10, column=2, padx=10, pady=10, sticky='n')
+    Label(frame4, text="Meta de ahorro:", font=("Lato", 15), bg="#F0F0F0").grid(row=10, column=1, padx=20, pady=5, sticky='n')
+    Button(frame4, text="Calcular", font=("Lato", 15), bg="#D4AF37", width=10, height=1, bd=2, command=calculos2).grid(row=11, column=1, padx=20, pady=5, sticky='ne')
+    Button(frame4, text="Volver", font=("Lato", 10), bg="#D4AF37", width=10, height=1, bd=2, command=volver).grid(row=11, column=2, padx=20, pady=5, sticky='w')
+    
+    if root4:
+        root.withdraw() #La ventana se oculta infinitamente
+    root4.mainloop()
 
 def volver(): 
     global root_active
@@ -93,7 +128,7 @@ def volver():
         root_active.destroy()  # Destruye la ventana activa actual
     root.deiconify()  # Devolver la ventana principal en la misma posición
 
-def calculos1():
+def calculos1():  #Calculos para metodo 50/30/20
     global ingresos, meta # Hacer referencia a la variable global
     ingreso = float(ingresos.get())
     meta_ahorro = float(meta.get())
@@ -107,16 +142,16 @@ def calculos1():
     años_str = "1 año" if años == 1 else f"{años} años" #Cambiar el str en el label de año a años
     meses_str = "1 mes" if meses_restantes == 1 else f"{meses_restantes} meses"
 
-    frame4=Frame(root2, width=650, height=300, bg="#F0F0F0")
-    frame4.grid(row=1, column=0, sticky="n", padx=20, pady=5)
-    Label(frame4, text="Gastos por categorias:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=1, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame4, text=f"Gastos Básicos (50%): ${gastos_basicos:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=2, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame4, text=f"Costes Personales (30%): ${costes_personales:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=3, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame4, text=f"Ahorro (20%): ${ahorro:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=4, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame4, text="Tiempo en lograr la meta de ahorro:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='e')
-    Label(frame4, text=f"{años_str} y {meses_str}", font=("Lato", 12), bg="#F0F0F0").grid(row=5, column=2, pady=2, sticky='w')
+    frame5=Frame(root2, width=650, height=300, bg="#F0F0F0")
+    frame5.grid(row=1, column=0, sticky="n", padx=20, pady=5)
+    Label(frame5, text="Gastos por categorias:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=1, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame5, text=f"Gastos Básicos (50%): ${gastos_basicos:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=2, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame5, text=f"Costes Personales (30%): ${costes_personales:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=3, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame5, text=f"Ahorro (20%): ${ahorro:.2f}", font=("Lato", 12), bg="#F0F0F0").grid(row=4, column=1, pady=2, sticky='w', columnspan=2)
+    Label(frame5, text="Tiempo en lograr la meta de ahorro:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='e')
+    Label(frame5, text=f"{años_str} y {meses_str}", font=("Lato", 12), bg="#F0F0F0").grid(row=5, column=2, pady=2, sticky='w')
 
-def calculos2():
+def calculos2(): #Calculos para metodo Harv Eker
     global ingresos2, meta2 # Hacer referencia a la variable global
     ingreso = float(ingresos2.get())
     meta_ahorro = float(meta2.get())
@@ -133,37 +168,48 @@ def calculos2():
     años_str = "1 año" if años == 1 else f"{años} años" #Cambiar el str en el label de año a años
     meses_str = "1 mes" if meses_restantes == 1 else f"{meses_restantes} meses"
 
-    frame5=Frame(root3, width=650, height=300, bg="#F0F0F0")
-    frame5.grid(row=1, column=0, sticky="n", padx=20, pady=5)
-    Label(frame5, text="Gastos por categorias:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=1, column=1, pady=2, columnspan=2, sticky='w')
-    Label(frame5, text=f"Gastos Básicos (55%): ${gastos_basicos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=1, pady=2, sticky='w')
-    Label(frame5, text=f"Ahorro (10%): ${ahorro:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=2, pady=2, sticky='w')
-    Label(frame5, text=f"Formación (10%): ${formacion:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=1, pady=2, sticky='w')
-    Label(frame5, text=f"Inversiones a Largo Plazo (10%): ${inversiones:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=2, pady=2, sticky='w')
-    Label(frame5, text=f"Ocio (10%): ${ocio:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=1, pady=2, sticky='w')
-    Label(frame5, text=f"Donativos (5%): ${donativos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=2, pady=2, sticky='w')
-    Label(frame5, text="Tiempo en lograr la meta de ahorro:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='e')
-    Label(frame5, text=f"{años_str} y {meses_str}", font=("Lato", 12), bg="#F0F0F0").grid(row=5, column=2, pady=2, sticky='w')
+    frame6=Frame(root3, width=650, height=300, bg="#F0F0F0")
+    frame6.grid(row=1, column=0, sticky="n", padx=20, pady=5)
+    Label(frame6, text="Gastos por categorias:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=1, column=1, pady=2, columnspan=2, sticky='w')
+    Label(frame6, text=f"Gastos Básicos (55%): ${gastos_basicos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=1, pady=2, sticky='w')
+    Label(frame6, text=f"Ahorro (10%): ${ahorro:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=2, pady=2, sticky='w')
+    Label(frame6, text=f"Formación (10%): ${formacion:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=1, pady=2, sticky='w')
+    Label(frame6, text=f"Inversiones a Largo Plazo (10%): ${inversiones:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=2, pady=2, sticky='w')
+    Label(frame6, text=f"Ocio (10%): ${ocio:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=1, pady=2, sticky='w')
+    Label(frame6, text=f"Donativos (5%): ${donativos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=2, pady=2, sticky='w')
+    Label(frame6, text="Tiempo en lograr la meta de ahorro:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='e')
+    Label(frame6, text=f"{años_str} y {meses_str}", font=("Lato", 12), bg="#F0F0F0").grid(row=5, column=2, pady=2, sticky='w')
 
-def root4():  #Ventana para metodo personalizado
-    global root4, root_active, ingresos3, meta3
-    root3 =Toplevel(root) #Crear una segunda ventana luego de la principal
-    root2.title("Metodo Personalizado")
-    root2.resizable(0,0)
-    root2.geometry("650x650")
-    root2.iconbitmap("logo.ico")
-    root2.config(bg="#F0F0F0")
-    root_active=root4
-    frame3=Frame(root3, width=650, height=300, bg="#F0F0F0")
-    frame3.grid(row=0, column=0, sticky="n", padx=20, pady=5)
-    Label(frame3, text="Metodo Personalizado", font=("Lato", 40), bg="#F0F0F0").grid(row=1, column=1, pady=10, columnspan=2)
-    Label(frame3, text="Este modelo es un espacio para que el usuario pueda otorgarle porcentajes a variables que el usuario considere necesarias, si no se considera necesaria alguna variable, se debe poner porcentaje cero en esta. ", font=("Lato", 10), bg="#F0F0F0", wraplength=600, justify='left').grid(row=2, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame3, text="-a % destinado a necesidades básicas: inmuebles, alimentación básica, transporte, etc.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=3, column=1, pady=2, columnspan=2, sticky='w')
-    Label(frame3, text="-b % para formación: libros, material de oficina/estudio, cursos, trabajos, exposiciones, etc.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=4, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame3, text="-c % para inversiones a largo plazo: gastos más grandes que hará en el futuro.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame3, text="-d % para invertir en ocio o algún capricho.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=6, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame3, text="-e % para donativos o caridades.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=7, column=1, pady=2, sticky='w', columnspan=2)
-    Label(frame3, text="-f % para ahorro: este dinero no se puede tocar para nada.", font=("Lato", 10), bg="#F0F0F0", wraplength=600).grid(row=8, column=1, pady=2, sticky='w', columnspan=2)
+def calculos3():  #Calculos para metodo personalizado
+    global ingresos3, meta3 # Hacer referencia a la variable global
+    ingreso = float(ingresos3.get())
+    meta_ahorro = float(meta3.get())
+    gastos_basicos = ingreso * 0.55
+    ahorro = ingreso * 0.10
+    formacion = ingreso * 0.10
+    inversiones = ingreso * 0.10
+    ocio = ingreso * 0.10
+    donativos = ingreso * 0.05
+    meses = math.ceil(meta_ahorro/ahorro)
+    años = meses // 12
+    meses_restantes = meses % 12
+
+    años_str = "1 año" if años == 1 else f"{años} años" #Cambiar el str en el label de año a años
+    meses_str = "1 mes" if meses_restantes == 1 else f"{meses_restantes} meses"
+
+    frame7=Frame(root4, width=650, height=300, bg="#F0F0F0")
+    frame7.grid(row=1, column=0, sticky="n", padx=20, pady=5)
+    Label(frame7, text="Gastos por categorias:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=1, column=1, pady=2, columnspan=2, sticky='w')
+    Label(frame7, text=f"Gastos Básicos (55%): ${gastos_basicos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=1, pady=2, sticky='w')
+    Label(frame7, text=f"Ahorro (10%): ${ahorro:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=2, column=2, pady=2, sticky='w')
+    Label(frame7, text=f"Formación (10%): ${formacion:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=1, pady=2, sticky='w')
+    Label(frame7, text=f"Inversiones a Largo Plazo (10%): ${inversiones:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=3, column=2, pady=2, sticky='w')
+    Label(frame7, text=f"Ocio (10%): ${ocio:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=1, pady=2, sticky='w')
+    Label(frame7, text=f"Donativos (5%): ${donativos:.2f}", font=("Lato", 12), bg="#F0F0F0", wraplength=600).grid(row=4, column=2, pady=2, sticky='w')
+    Label(frame7, text="Tiempo en lograr la meta de ahorro:", font=("Lato", 15), bg="#F0F0F0", wraplength=600).grid(row=5, column=1, pady=2, sticky='e')
+    Label(frame7, text=f"{años_str} y {meses_str}", font=("Lato", 12), bg="#F0F0F0").grid(row=5, column=2, pady=2, sticky='w')
 
 
-root()
+    root()
+
+
